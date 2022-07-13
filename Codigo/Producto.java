@@ -75,4 +75,7 @@ public class Producto
         return this.cantidad;
     }
 
+    public String toString(){
+        return "Producto: "  +this.nombre + " Codigo: " + this.codigo+ " Marca: " + this.marca + " Presentacion: " + this.presentacion;
+    }
 }
