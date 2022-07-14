@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,23 +7,34 @@ public class Bodega
     private List<Producto> listaProductos;
 
     public Bodega(){
-        this.listaProductos=new ArrayList<Producto>();
+        ArchivoProductos a= new ArchivoProductos();
+        this.listaProductos=a.leerProductos();
     }
 
-    public void agregarProducto(Producto p) 
-    {
+    public void agregarProducto(Producto p) throws IOException {
        this.listaProductos.add(p);
+       ArchivoProductos a = new ArchivoProductos();
+       a.guardarProducto(p.toCVC());
     }
 
     public void eliminarProducto(String codigo) 
     {
+
         int indexAEliminar=this.buscarProducto(codigo);
         if (indexAEliminar!=-1){
             this.listaProductos.remove(indexAEliminar);
         }
     }
 
-    public int buscarProducto(String codigo)
+    public void buscarProductos(String criterio){
+        ArrayList<Producto> listEncontrados=new ArrayList<Producto>();
+        for(Producto p: this.listaProductos){
+            if (p.getNombre().equals(criterio)||p.getMarca().equals(criterio)||p.getPresentacion().equals(criterio)){
+                listEncontrados.add(p);
+            }
+        }
+    }
+   public int buscarProducto(String codigo)
     {
         for(int i=0;i<this.listaProductos.size();i++){
             if(this.listaProductos.get(i).getCodigo().equals(codigo)){

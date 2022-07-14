@@ -78,4 +78,7 @@ public class Producto
     public String toString(){
         return "Producto: "  +this.nombre + " Codigo: " + this.codigo+ " Marca: " + this.marca + " Presentacion: " + this.presentacion;
     }
+    public String toCVC(){
+        return this.codigo + ";"+  this.nombre + ";"+this.marca+";"+this.presentacion+ this.tipo+ ";"+ ";"+this.precio+ ";"+this.cantidad;
+    }
 }
