@@ -6,7 +6,7 @@ public class ArchivoProductos {
     private File archivo;
 
     public ArchivoProductos(){
-        this.archivo=new File("listaProductos.txt");
+        this.archivo=new File("listaProductos.csv");
     }
     public void guardarProducto(String texto) throws IOException {
         try{
@@ -47,4 +47,22 @@ public class ArchivoProductos {
         return lista;
 
     }
+    public void guardarLista(List<Producto> lista){
+        String datoCompleto="";
+        for(Producto p:lista){
+            datoCompleto=  datoCompleto+ p.toCVC() + "\n";
+        }
+        try{
+            FileWriter writer =new FileWriter(this.archivo,false);
+            PrintWriter cursor = new PrintWriter(writer);
+            cursor.print(datoCompleto);
+            cursor.flush();
+            cursor.close();
+            writer.close();
+        }
+        catch (Exception e){
+
+        }
+    }
 }
+

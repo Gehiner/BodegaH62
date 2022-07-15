@@ -5,10 +5,11 @@ import java.util.List;
 public class Bodega 
 {
     private List<Producto> listaProductos;
+    ArchivoProductos archivo;
 
     public Bodega(){
-        ArchivoProductos a= new ArchivoProductos();
-        this.listaProductos=a.leerProductos();
+        archivo= new ArchivoProductos();
+        this.listaProductos=archivo.leerProductos();
     }
 
     public void agregarProducto(Producto p) throws IOException {
@@ -26,13 +27,14 @@ public class Bodega
         }
     }
 
-    public void buscarProductos(String criterio){
+    public ArrayList<Producto> buscarProductos(String criterio){
         ArrayList<Producto> listEncontrados=new ArrayList<Producto>();
         for(Producto p: this.listaProductos){
-            if (p.getNombre().equals(criterio)||p.getMarca().equals(criterio)||p.getPresentacion().equals(criterio)){
+            if (p.getNombre().equals(criterio)||p.getMarca().equals(criterio)||p.getPresentacion().equals(criterio) || p.getTipo().equals(criterio)){
                 listEncontrados.add(p);
             }
         }
+        return listEncontrados;
     }
    public int buscarProducto(String codigo)
     {
@@ -59,6 +61,7 @@ public class Bodega
             int cantidadActual=this.listaProductos.get(indexAModificar).getCantidad();
             this.listaProductos.get(indexAModificar).setCantidad(cantidadActual+cant);
         }
+        this.actualizarArchivo();
     }
 
     public void disminuirCantProducto(String codigo, int cant) 
@@ -70,9 +73,13 @@ public class Bodega
                 this.listaProductos.get(indexAModificar).setCantidad(cantidadActual-cant);
             }
         }
+        this.actualizarArchivo();
     }
 
     public List<Producto> getListaProductos() {
         return listaProductos;
+    }
+    public void actualizarArchivo(){
+        this.archivo.guardarLista(this.listaProductos);
     }
 }
