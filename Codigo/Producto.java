@@ -75,10 +75,16 @@ public class Producto
         return this.cantidad;
     }
 
-    public String toString(){
-        return this.nombre + " - Marca: " + this.marca + " Presentacion: " + this.presentacion + "(" + this.tipo+")" + "cantidad (" + this.cantidad+")" ;
+    public String toString()
+    {
+        return this.nombre+" "+this.marca + " - "+this.presentacion + " (" + this.tipo + ") Cant: " + this.cantidad;
     }
-    public String toCVC(){
-        return this.codigo + ";"+  this.nombre + ";"+this.marca+";"+this.presentacion+ this.tipo+ ";"+ ";"+this.precio+ ";"+this.cantidad;
+    
+    public String toCSV()
+    {
+        return this.codigo+";"+this.nombre+";"+this.marca+";"+this.presentacion+";"+this.tipo+";"+this.precio+";"+this.cantidad;
     }
 }
+
+
+
