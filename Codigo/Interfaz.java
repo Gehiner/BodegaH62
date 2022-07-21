@@ -20,7 +20,7 @@ public class Interfaz
                           "1. Productos \n" +
                           "2. Ventas \n" +
                           "0. Salir";
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "Seleccione una opción", JOptionPane.QUESTION_MESSAGE));
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "Seleccione una opciï¿½n", JOptionPane.QUESTION_MESSAGE));
             switch(opcion)
             {
                 case 1:
@@ -33,7 +33,7 @@ public class Interfaz
                     JOptionPane.showMessageDialog(null, "Gracias", "Salir del programa", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Opción incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Opciï¿½n incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         }
         while(opcion != 0);
@@ -49,8 +49,8 @@ public class Interfaz
                           "2. Mostrar lista de productos \n" +
                           "3. Buscar productos \n" +
                           "4. Surtir producto \n" +
-                          "0. Regresar al menú principal";
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "Seleccione una opción", JOptionPane.QUESTION_MESSAGE));
+                          "0. Regresar al menï¿½ principal";
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "Seleccione una opciï¿½n", JOptionPane.QUESTION_MESSAGE));
             switch(opcion)
             {
                 case 1:
@@ -68,7 +68,7 @@ public class Interfaz
                 case 0:
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Opción incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Opciï¿½n incorrecta", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         }
         while(opcion != 0);
@@ -88,7 +88,7 @@ public class Interfaz
         Producto p = new Producto(tipos[tipo], nombre, marca, presentacion, codigo, precio, cantidad);
         
         b.agregarProducto(p);
-        JOptionPane.showMessageDialog(null, "Producto agregado con éxito:\n"+p.toString(), "Producto agregado", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Producto agregado con ï¿½xito:\n"+p.toString(), "Producto agregado", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public String generarCodigoAleatorio()
@@ -122,7 +122,7 @@ public class Interfaz
         String listado = "";
         for (int i=0; i<lista.size(); i++)
         {
-            listado = listado + "Posición ["+(i+1)+"] "+ lista.get(i).toString() + "\n";
+            listado = listado + "Posiciï¿½n ["+(i+1)+"] "+ lista.get(i).toString() + "\n";
         }
         JOptionPane.showMessageDialog(null, listado, "Productos encontrados", JOptionPane.INFORMATION_MESSAGE);
         return lista;
@@ -131,7 +131,7 @@ public class Interfaz
     public void surtirProducto()
     {
         List<Producto> lista = this.buscarProductos();
-        int posicion = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese posición del producto a surtir", "Surtir producto", JOptionPane.QUESTION_MESSAGE)) - 1;
+        int posicion = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese posiciï¿½n del producto a surtir", "Surtir producto", JOptionPane.QUESTION_MESSAGE)) - 1;
         int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cantidad del producto a surtir", "Surtir producto", JOptionPane.QUESTION_MESSAGE));
         int precio = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese nuevo precio del producto a surtir", "Surtir producto", JOptionPane.QUESTION_MESSAGE));
         String codigo = lista.get(posicion).getCodigo();
@@ -144,36 +144,8 @@ public class Interfaz
     public void generarVenta()
     {
         Venta v = new Venta();
-        int opcion;
-        do
-        {
-            List<Producto> lista = this.buscarProductos();
-            int posicion = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese posición del producto a vender", "Vender producto", JOptionPane.QUESTION_MESSAGE)) - 1;
-            int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cantidad del producto a vender", "Vender producto", JOptionPane.QUESTION_MESSAGE));
-            Producto p = lista.get(posicion);
-            if (cantidad <= p.getCantidad()) {
-                v.agregarACarrito(p, cantidad);    
-            }
-            else 
-            {
-                JOptionPane.showMessageDialog(null, "Cantidad insuficiente", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            }
-            opcion = JOptionPane.showConfirmDialog(null, "Desea continuar agregando productos?", "Vender producto", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        } 
-        while(opcion == JOptionPane.YES_OPTION);
-        int valorTotal = v.calcularVenta();
-        
-        opcion = JOptionPane.showConfirmDialog(null, "El valor a pagar es: $"+valorTotal+"\nDesea finalizar la venta?", "Vender producto", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (opcion == JOptionPane.YES_OPTION)
-        {
-            v.finalizarVenta();
-            JOptionPane.showMessageDialog(null, "Gracias por su compra", "Venta realizada", JOptionPane.INFORMATION_MESSAGE);
+        List<Producto> lista = this.buscarProductos();
         }
-        else 
-        {
-            JOptionPane.showMessageDialog(null, "Venta no realizada", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }
-    }
 }
 
 
